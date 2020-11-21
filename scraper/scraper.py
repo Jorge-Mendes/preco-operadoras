@@ -27,13 +27,13 @@ def getVodafonePrice():
     session = get_tor_session()
     content = session.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-plus.json", headers=headers)
     vdf = json.loads(content.content)
-    return vdf['baseValue']
+    return float(vdf['baseValue'])
 
 #PARSE VALUE FROM MEO
 def getMeoPrice():
     content = requests.get('https://app-9015f501-af0b-463a-b954-ab7059b01626.apps.meo.pt/api/FixedOffer/GetCatalogBundle?storeId=1&catalogsNames=m3_f_b',headers=headers)
     meo = json.loads(content.content)
-    return meo[0]['price'];
+    return float(meo[0]['price']);
 
 #PARSE VALUE FROM NOS
 def getNosPrice():
@@ -49,7 +49,7 @@ def getNosPrice():
     c=pd.read_csv(io.StringIO(s.decode('utf-8')), delimiter=';')
 
     row = c[c['idpacote'] == 'NOS3-3499']
-    return row['tv1net1'].values[0]
+    return float(row['tv1net1'].values[0])
 
 
 
@@ -76,7 +76,7 @@ print(timestamp)
 
 #Upload VODAFONE price
 vodafonePrice = getVodafonePrice();
-vodafoneRecord = { "operator": 3, "value": float(vodafonePrice), "timestamp" : timestamp }
+vodafoneRecord = { "operator": 3, "value": vodafonePrice, "timestamp" : timestamp }
 x = mycol.insert_one(vodafoneRecord)
 print( "VODAFONE: " + str(vodafonePrice) )
 
@@ -84,13 +84,13 @@ print( "VODAFONE: " + str(vodafonePrice) )
 
 #Upload MEO price
 meoPrice = getMeoPrice();
-meoRecord = { "operator": 1, "value": float(meoPrice), "timestamp" : timestamp }
+meoRecord = { "operator": 1, "value": meoPrice, "timestamp" : timestamp }
 x = mycol.insert_one(meoRecord)
 print( "MEO: " + str(meoPrice) )
 
 
 #Upload NOS price
 nosPrice = getNosPrice();
-nosRecord = { "operator": 2, "value": float(nosPrice), "timestamp" : timestamp }
+nosRecord = { "operator": 2, "value": nosPrice, "timestamp" : timestamp }
 x = mycol.insert_one(nosRecord)
 print( "NOS: " + str(nosPrice) )
