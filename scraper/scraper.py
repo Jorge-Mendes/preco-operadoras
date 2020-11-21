@@ -1,44 +1,48 @@
 from dotenv import load_dotenv
 from pathlib import Path
 import os
-from selenium import webdriver
-from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.firefox.options import Options
 import time
 import pymongo
 import requests
 import json
+import pandas as pd
+import io
+import re
+
+
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'
+}
 
 
 
 #PARSE VALUE FROM VODAFONE
 def getVodafonePrice():
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'
-    }
-
     content = requests.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-plus.json", headers=headers)
     vdf = json.loads(content.content)
     return vdf['baseValue']
 
 #PARSE VALUE FROM MEO
-def getMeoPrice(driver):
-    driver.get('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz')
-    #time.sleep(5)
-    offer = driver.find_element_by_xpath('//*[@id="pack_0_offers_50_canais_premium"]')
-    offer.click()
-
-    priceDiv = driver.find_element_by_xpath("/html/body/form/div[3]/div/div[2]/div/div[2]/div[4]/div[1]/div/div[1]/div/div/section/div/ul/li[1]/div[1]/div[1]/div[1]/div/h2")
-    price = priceDiv.text.replace(',','.')[1:-4]
-    return price
+def getMeoPrice():
+    content = requests.get('https://app-9015f501-af0b-463a-b954-ab7059b01626.apps.meo.pt/api/FixedOffer/GetCatalogBundle?storeId=1&catalogsNames=m3_f_b',headers=headers)
+    meo = json.loads(content.content)
+    return meo[0]['price'];
 
 #PARSE VALUE FROM NOS
-def getNosPrice(driver):
-    driver.get('https://www.nos.pt/particulares/pacotes/todos-os-pacotes/Paginas/pacotes.aspx?source=menupacotes&content=topo#tab4')
-    time.sleep(5)
-    priceDiv = driver.find_element_by_xpath("/html/body/form/div[3]/div/section/section[2]/div[2]/div/div[9]/div[1]/div/section[1]/div[1]/article[2]/header/h3")
-    price = priceDiv.text.replace(',','.')
-    return price
+def getNosPrice():
+
+    linkContent = requests.get('https://www.nos.pt/particulares/pacotes/todos-os-pacotes/Paginas/pacotes.aspx',headers=headers).text
+    jsLink =  re.search("\/particulares\/pacotes\/todos-os-pacotes\/Documents\/(.+)js", linkContent)
+
+    jsContent = requests.get('https://www.nos.pt' + jsLink.group(),headers=headers).text
+    csvLink =  re.search("\/particulares\/pacotes\/todos-os-pacotes\/Documents\/(.+)csv", jsContent)
+
+
+    s = requests.get('https://www.nos.pt'+csvLink.group(),headers=headers).content
+    c=pd.read_csv(io.StringIO(s.decode('utf-8')), delimiter=';')
+
+    row = c[c['idpacote'] == 'NOS3-3499']
+    return row['tv1net1'].values[0]
 
 
 
@@ -50,11 +54,6 @@ MONGO_HOST = os.getenv("MONGO_HOST");
 MONGO_PORT = os.getenv("MONGO_PORT");
 MONGO_DB = os.getenv("MONGO_DB");
 MONGO_COLLECTION = os.getenv("MONGO_COLLECTION");
-
-#Initailiaze Firefox webdriver
-options = Options()
-options.headless = True
-driver = webdriver.Firefox(options=options, executable_path=GeckoDriverManager().install())
 
 #Initailiaze Database
 myclient = pymongo.MongoClient("mongodb://"+MONGO_HOST+":"+MONGO_PORT+"/")
@@ -77,20 +76,14 @@ print( "VODAFONE: " + str(vodafonePrice) )
 
 
 #Upload MEO price
-meoPrice = getMeoPrice(driver);
+meoPrice = getMeoPrice();
 meoRecord = { "operator": 1, "value": meoPrice, "timestamp" : timestamp }
 x = mycol.insert_one(meoRecord)
 print( "MEO: " + str(meoPrice) )
 
 
 #Upload NOS price
-nosPrice = getNosPrice(driver);
+nosPrice = getNosPrice();
 nosRecord = { "operator": 2, "value": nosPrice, "timestamp" : timestamp }
 x = mycol.insert_one(nosRecord)
 print( "NOS: " + str(nosPrice) )
-
-
-
-
-#close connections
-#driver.quit()
