@@ -84,4 +84,4 @@ print( "VODAFONE: " + vodafonePrice )
 
 
 #close connections
-driver.close()
+driver.quit()
