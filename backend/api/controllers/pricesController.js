@@ -43,7 +43,7 @@ module.exports = () => {
           });
 
           vodafoneResult = result.filter(function (e) {
-                  return e.operator == 2;
+                  return e.operator == 3;
               });
 
           vodafoneResult.forEach(function(entry) {
