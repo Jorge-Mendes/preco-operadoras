@@ -8,6 +8,16 @@ import time
 import pymongo
 
 
+#PARSE VALUE FROM VODAFONE
+def getVodafonePrice(driver):
+    driver.get('https://www.vodafone.pt/pacotes.html')
+    time.sleep(5)
+    #tab = driver.find_element_by_xpath('//*[@id="#3p"]');
+    #tab.click();
+    priceDiv = driver.find_element_by_xpath("/html/body/div[3]/div/div[1]/div[2]/div[8]/div/div/div[2]/section/div/div/div[2]/div[2]/div[1]/div/div/div/div[3]/div/div/div/div/div[2]/div/div[6]/div[2]/h2")
+    price = priceDiv.text.replace(',','.')[1:-4]
+    return price
+
 #PARSE VALUE FROM MEO
 def getMeoPrice(driver):
     driver.get('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz')
@@ -27,15 +37,7 @@ def getNosPrice(driver):
     price = priceDiv.text.replace(',','.')
     return price
 
-#PARSE VALUE FROM VODAFONE
-def getVodafonePrice(driver):
-    driver.get('https://www.vodafone.pt/pacotes.html')
-    time.sleep(5)
-    #tab = driver.find_element_by_xpath('//*[@id="#3p"]');
-    #tab.click();
-    priceDiv = driver.find_element_by_xpath("/html/body/div[3]/div/div[1]/div[2]/div[8]/div/div/div[2]/section/div/div/div[2]/div[2]/div[1]/div/div/div/div[3]/div/div/div/div/div[2]/div/div[6]/div[2]/h2")
-    price = priceDiv.text.replace(',','.')[1:-4]
-    return price
+
 
 #Load env variables
 env_path = Path('.') / '.env'
