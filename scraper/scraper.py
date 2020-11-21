@@ -70,7 +70,7 @@ mycol = mydb[MONGO_COLLECTION]
 
 
 #Get timestamp
-timestamp = int(time.time())
+timestamp = int(time.time())*1000
 print(timestamp)
 
 
