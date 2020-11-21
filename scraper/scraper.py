@@ -64,6 +64,15 @@ mycol = mydb[MONGO_COLLECTION]
 timestamp = int(time.time())
 print(timestamp)
 
+
+#Upload VODAFONE price
+vodafonePrice = getVodafonePrice(driver);
+vodafoneRecord = { "operator": 3, "value": vodafonePrice, "timestamp" : timestamp }
+x = mycol.insert_one(vodafoneRecord)
+print( "VODAFONE: " + vodafonePrice )
+
+
+
 #Upload MEO price
 meoPrice = getMeoPrice(driver);
 meoRecord = { "operator": 1, "value": meoPrice, "timestamp" : timestamp }
@@ -78,11 +87,6 @@ x = mycol.insert_one(nosRecord)
 print( "NOS: " + nosPrice )
 
 
-#Upload VODAFONE price
-vodafonePrice = getVodafonePrice(driver);
-vodafoneRecord = { "operator": 3, "value": vodafonePrice, "timestamp" : timestamp }
-x = mycol.insert_one(vodafoneRecord)
-print( "VODAFONE: " + vodafonePrice )
 
 
 #close connections
