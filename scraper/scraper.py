@@ -11,7 +11,7 @@ import pymongo
 #PARSE VALUE FROM MEO
 def getMeoPrice(driver):
     driver.get('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz')
-    time.sleep(15)
+    #time.sleep(5)
     offer = driver.find_element_by_xpath('//*[@id="pack_0_offers_50_canais_premium"]')
     offer.click()
 
@@ -22,7 +22,7 @@ def getMeoPrice(driver):
 #PARSE VALUE FROM NOS
 def getNosPrice(driver):
     driver.get('https://www.nos.pt/particulares/pacotes/todos-os-pacotes/Paginas/pacotes.aspx?source=menupacotes&content=topo#tab4')
-    time.sleep(15)
+    time.sleep(5)
     priceDiv = driver.find_element_by_xpath("/html/body/form/div[3]/div/section/section[2]/div[2]/div/div[9]/div[1]/div/section[1]/div[1]/article[2]/header/h3")
     price = priceDiv.text.replace(',','.')
     return price
@@ -30,7 +30,7 @@ def getNosPrice(driver):
 #PARSE VALUE FROM VODAFONE
 def getVodafonePrice(driver):
     driver.get('https://www.vodafone.pt/pacotes.html')
-    time.sleep(15)
+    time.sleep(5)
     #tab = driver.find_element_by_xpath('//*[@id="#3p"]');
     #tab.click();
     priceDiv = driver.find_element_by_xpath("/html/body/div[3]/div/div[1]/div[2]/div[8]/div/div/div[2]/section/div/div/div[2]/div[2]/div[1]/div/div/div/div[3]/div/div/div/div/div[2]/div/div[6]/div[2]/h2")
