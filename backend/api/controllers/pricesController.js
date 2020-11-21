@@ -13,7 +13,7 @@ module.exports = () => {
   controller.getPrices = (req, res) => {
       MongoClient.connect(url, {useUnifiedTopology: true}, function(err, db) {
         if (err) throw err;
-        var dbo = db.db("quantopago");
+        var dbo = db.db("precooperadoras");
 
 
 
