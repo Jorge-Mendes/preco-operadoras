@@ -8,25 +8,24 @@ import json
 import pandas as pd
 import io
 import re
-from fp.fp import FreeProxy
 
 
 headers = {
     'User-Agent': '"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"'
 }
 
+def get_tor_session():
+    session = requests.session()
+    # Tor uses the 9050 port as the default socks port
+    session.proxies = {'http':  'socks5://127.0.0.1:9050',
+                       'https': 'socks5://127.0.0.1:9050'}
+    return session
 
 
 #PARSE VALUE FROM VODAFONE
 def getVodafonePrice():
-    proxy = FreeProxy().get()
-    while not proxy.startswith('http'):
-        proxy = FreeProxy().get()
-
-    proxies = {
-      "http": proxy
-    }
-    content = requests.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-plus.json", headers=headers, proxies=proxies)
+    session = get_tor_session()
+    content = session.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-plus.json", headers=headers)
     vdf = json.loads(content.content)
     return vdf['baseValue']
 
