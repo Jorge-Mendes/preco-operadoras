@@ -6,17 +6,16 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.options import Options
 import time
 import pymongo
+import requests
+import json
+
 
 
 #PARSE VALUE FROM VODAFONE
-def getVodafonePrice(driver):
-    driver.get('https://www.vodafone.pt/pacotes.html')
-    #time.sleep(5)
-    #tab = driver.find_element_by_xpath('//*[@id="#3p"]');
-    #tab.click();
-    priceDiv = driver.find_element_by_xpath("/html/body/div[3]/div/div[1]/div[2]/div[8]/div/div/div[2]/section/div/div/div[2]/div[2]/div[1]/div/div/div/div[3]/div/div/div/div/div[2]/div/div[6]/div[2]/h2")
-    price = priceDiv.text.replace(',','.')[1:-4]
-    return price
+def getVodafonePrice():
+    content = requests.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-plus.json")
+    vdf = json.loads(content.content)
+    return vdf['baseValue']
 
 #PARSE VALUE FROM MEO
 def getMeoPrice(driver):
@@ -66,10 +65,10 @@ print(timestamp)
 
 
 #Upload VODAFONE price
-vodafonePrice = getVodafonePrice(driver);
+vodafonePrice = getVodafonePrice();
 vodafoneRecord = { "operator": 3, "value": vodafonePrice, "timestamp" : timestamp }
 x = mycol.insert_one(vodafoneRecord)
-print( "VODAFONE: " + vodafonePrice )
+print( "VODAFONE: " + str(vodafonePrice) )
 
 
 
@@ -77,14 +76,14 @@ print( "VODAFONE: " + vodafonePrice )
 meoPrice = getMeoPrice(driver);
 meoRecord = { "operator": 1, "value": meoPrice, "timestamp" : timestamp }
 x = mycol.insert_one(meoRecord)
-print( "MEO: " + meoPrice )
+print( "MEO: " + str(meoPrice) )
 
 
 #Upload NOS price
 nosPrice = getNosPrice(driver);
 nosRecord = { "operator": 2, "value": nosPrice, "timestamp" : timestamp }
 x = mycol.insert_one(nosRecord)
-print( "NOS: " + nosPrice )
+print( "NOS: " + str(nosPrice) )
 
 
 
