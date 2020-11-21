@@ -1,5 +1,5 @@
  document.addEventListener('DOMContentLoaded', function () {
-     Highcharts.getJSON('preco-operadoras.pt/back/api/prices', function (data) {
+     Highcharts.getJSON('https://preco-operadoras.pt/back/api/prices', function (data) {
 
          Highcharts.setOptions(
              {
