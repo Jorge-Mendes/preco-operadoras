@@ -76,7 +76,7 @@ print(timestamp)
 
 #Upload VODAFONE price
 vodafonePrice = getVodafonePrice();
-vodafoneRecord = { "operator": 3, "value": vodafonePrice, "timestamp" : timestamp }
+vodafoneRecord = { "operator": 3, "value": float(vodafonePrice), "timestamp" : timestamp }
 x = mycol.insert_one(vodafoneRecord)
 print( "VODAFONE: " + str(vodafonePrice) )
 
@@ -84,13 +84,13 @@ print( "VODAFONE: " + str(vodafonePrice) )
 
 #Upload MEO price
 meoPrice = getMeoPrice();
-meoRecord = { "operator": 1, "value": meoPrice, "timestamp" : timestamp }
+meoRecord = { "operator": 1, "value": float(meoPrice), "timestamp" : timestamp }
 x = mycol.insert_one(meoRecord)
 print( "MEO: " + str(meoPrice) )
 
 
 #Upload NOS price
 nosPrice = getNosPrice();
-nosRecord = { "operator": 2, "value": nosPrice, "timestamp" : timestamp }
+nosRecord = { "operator": 2, "value": float(nosPrice), "timestamp" : timestamp }
 x = mycol.insert_one(nosRecord)
 print( "NOS: " + str(nosPrice) )
