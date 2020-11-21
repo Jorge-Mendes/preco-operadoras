@@ -8,6 +8,7 @@ import json
 import pandas as pd
 import io
 import re
+from fp.fp import FreeProxy
 
 
 headers = {
@@ -18,7 +19,14 @@ headers = {
 
 #PARSE VALUE FROM VODAFONE
 def getVodafonePrice():
-    content = requests.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-plus.json", headers=headers)
+    proxy = FreeProxy().get()
+    while not proxy.startswith('http'):
+        proxy = FreeProxy().get()
+
+    proxies = {
+      "http": proxy
+    }
+    content = requests.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-plus.json", headers=headers, proxies=proxies)
     vdf = json.loads(content.content)
     return vdf['baseValue']
 
