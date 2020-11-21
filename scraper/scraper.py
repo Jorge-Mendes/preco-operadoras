@@ -13,7 +13,11 @@ import json
 
 #PARSE VALUE FROM VODAFONE
 def getVodafonePrice():
-    content = requests.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-plus.json")
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36'
+    }
+
+    content = requests.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-plus.json", headers=headers)
     vdf = json.loads(content.content)
     return vdf['baseValue']
 
