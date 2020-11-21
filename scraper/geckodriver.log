@@ -119,3 +119,11 @@ console.error: Region.jsm: "Failed to fetch region" (new Error("TIMEOUT", "resou
 JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=2043710669, line 1: unreachable code after return statement
 JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=2043710669, line 1: unreachable code after return statement
 JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=2043710669 line 1 > eval, line 1: unreachable code after return statement
+1605920653193	geckodriver	INFO	Listening on 127.0.0.1:42047
+1605920653198	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileLtQDEv"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1605920654879	Marionette	INFO	Listening on port 40583
+1605920654960	Marionette	WARN	TLS certificate errors will be ignored for this session
+console.error: Region.jsm: "Error fetching region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 726))
+console.error: Region.jsm: "Failed to fetch region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 376))
