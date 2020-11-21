@@ -11,7 +11,7 @@ import pymongo
 #PARSE VALUE FROM VODAFONE
 def getVodafonePrice(driver):
     driver.get('https://www.vodafone.pt/pacotes.html')
-    time.sleep(5)
+    #time.sleep(5)
     #tab = driver.find_element_by_xpath('//*[@id="#3p"]');
     #tab.click();
     priceDiv = driver.find_element_by_xpath("/html/body/div[3]/div/div[1]/div[2]/div[8]/div/div/div[2]/section/div/div/div[2]/div[2]/div[1]/div/div/div/div[3]/div/div/div/div/div[2]/div/div[6]/div[2]/h2")
