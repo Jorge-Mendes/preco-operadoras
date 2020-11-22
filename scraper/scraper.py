@@ -54,7 +54,8 @@ def getNosPrice():
 
 
 #Load env variables
-env_path = Path('.') / '.env'
+BASE_DIR = os.path.dirname(os.path.realpath(__file__))
+env_path = os.path.join(BASE_DIR, '.env')
 load_dotenv(dotenv_path=env_path)
 
 MONGO_HOST = os.getenv("MONGO_HOST");
