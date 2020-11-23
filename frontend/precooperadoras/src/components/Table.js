@@ -2,9 +2,9 @@ import React from "react";
 
 function Table() {
     return (
-        <br>
         <div className="row row-cards">
             <div className="col-12">
+            <br></br>
               <div className="card">
                 <div className="table-responsive">
                   <table className="table table-vcenter card-table">
