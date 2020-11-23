@@ -1,6 +1,7 @@
 import React from "react";
 import Chart from './Chart';
 import Description from './Description';
+import Table from './Table';
 
 function Content() {
     return (
@@ -13,6 +14,7 @@ function Content() {
                             <Chart />
                         </div>
                     </div>
+                    <Table />
                 </div>
             </div>
         </div>

@@ -1,9 +1,9 @@
  document.addEventListener('DOMContentLoaded', function () {
      Highcharts.getJSON('https://preco-operadoras.pt/back/api/prices', function (data) {
 
-         $('#value-meo').html(data.meo[data.meo.length - 1][1]);
-         $('#value-vodafone').html(data.vodafone[data.vodafone.length - 1][1]);
-         $('#value-nos').html(data.nos[data.nos.length - 1][1]);
+         $('#value-meo').html(data.meo[data.meo.length - 1][1] + "€");
+         $('#value-vodafone').html(data.vodafone[data.vodafone.length - 1][1] + "€");
+         $('#value-nos').html(data.nos[data.nos.length - 1][1] + "€");
 
          Highcharts.setOptions(
              {
