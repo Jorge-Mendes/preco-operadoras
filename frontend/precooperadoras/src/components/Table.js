@@ -2,6 +2,7 @@ import React from "react";
 
 function Table() {
     return (
+        <br>
         <div className="row row-cards">
             <div className="col-12">
               <div className="card">
