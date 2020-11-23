@@ -25,13 +25,13 @@ def get_tor_session():
 #PARSE VALUE FROM VODAFONE
 def getVodafonePrice():
     session = get_tor_session()
-    content = session.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-plus.json", headers=headers)
+    content = session.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-gold.json", headers=headers)
     vdf = json.loads(content.content)
     return float(vdf['baseValue'])
 
 #PARSE VALUE FROM MEO
 def getMeoPrice():
-    content = requests.get('https://app-9015f501-af0b-463a-b954-ab7059b01626.apps.meo.pt/api/FixedOffer/GetCatalogBundle?storeId=1&catalogsNames=m3_f_d',headers=headers)
+    content = requests.get('https://app-9015f501-af0b-463a-b954-ab7059b01626.apps.meo.pt/api/FixedOffer/GetCatalogBundle?storeId=1&catalogsNames=m3_f_b',headers=headers)
     meo = json.loads(content.content)
     return float(meo[0]['price']);
 
@@ -48,7 +48,7 @@ def getNosPrice():
     s = requests.get('https://www.nos.pt'+csvLink.group(),headers=headers).content
     c=pd.read_csv(io.StringIO(s.decode('utf-8')), delimiter=';')
 
-    row = c[c['idpacote'] == 'NOS3-3499']
+    row = c[c['idpacote'] == 'NOS3-3699']
     return float(row['tv1net1'].values[0])
 
 

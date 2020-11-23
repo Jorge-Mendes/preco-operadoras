@@ -2,14 +2,14 @@
 
 ![alt text](https://preco-operadoras.pt/images/logo_md.png "Preço Operadoras")
 
-Monitorização dos preços das operadoras para um pacote básico de de TV+NET+TELEFONE.
+Monitorização dos preços das operadoras para um pacote básico de de TV+NET+VOZ.
 
 Disponível em: https://preco-operadoras.pt/
 
 
-## Pacotes
+## Pacotes TV+NET+VOZ
 
-### MEO - M3 TV+NET+VOZ
+### MEO - M3
 * Pack Standard + Extra | 150 canais
 * 200/100Mbps
 * Chamadas incluidas para redes fixas e móvel nacionais 24h + 50 destinos internacionais (noite, 1.000 min)
