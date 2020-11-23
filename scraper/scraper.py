@@ -49,7 +49,7 @@ def getNosPrice():
     c=pd.read_csv(io.StringIO(s.decode('utf-8')), delimiter=';')
 
     row = c[c['idpacote'] == 'NOS3-3499']
-    return float(row['tv1net1'].values[0])
+    return float(row['tv2net1riscado'].values[0])
 
 
 
