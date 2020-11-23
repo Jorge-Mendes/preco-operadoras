@@ -31,7 +31,7 @@ def getVodafonePrice():
 
 #PARSE VALUE FROM MEO
 def getMeoPrice():
-    content = requests.get('https://app-9015f501-af0b-463a-b954-ab7059b01626.apps.meo.pt/api/FixedOffer/GetCatalogBundle?storeId=1&catalogsNames=m3_f_b',headers=headers)
+    content = requests.get('https://app-9015f501-af0b-463a-b954-ab7059b01626.apps.meo.pt/api/FixedOffer/GetCatalogBundle?storeId=1&catalogsNames=m3_f_d',headers=headers)
     meo = json.loads(content.content)
     return float(meo[0]['price']);
 

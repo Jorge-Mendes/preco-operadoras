@@ -6,7 +6,7 @@ function Header() {
             <div className="container">
                 <div className="d-flex">
                 <a className="header-brand" href="https://preco-operadoras.pt/">
-                  <img src="/images/logo.svg" className="header-brand-img" alt="tabler logo"/>
+                  <img src="/images/logo.svg" className="header-brand-img" alt="Preço Operadoras"/>
                 </a>
                 </div>
             </div>
