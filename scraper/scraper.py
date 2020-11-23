@@ -48,7 +48,7 @@ def getNosPrice():
     s = requests.get('https://www.nos.pt'+csvLink.group(),headers=headers).content
     c=pd.read_csv(io.StringIO(s.decode('utf-8')), delimiter=';')
 
-    row = c[c['idpacote'] == 'NOS3-3499']
+    row = c[c['idpacote'] == 'NOS3d-3499']
     return float(row['tv2net1riscado'].values[0])
 
 
