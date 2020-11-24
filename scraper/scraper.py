@@ -5,7 +5,6 @@ from minio.error import ResponseError
 from selenium import webdriver
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.common.proxy import Proxy, ProxyType
 import os
 import time
 import pymongo
@@ -129,14 +128,12 @@ print( "NOS: " + str(nosPrice) )
 
 
 
-proxy_address = "127.0.0.1:9050"
-proxy = Proxy({
-    'proxyType': ProxyType.MANUAL,
-    'httpProxy': proxy_address,
-})
 options = Options()
 options.headless = True
-driver = webdriver.Firefox(options=options, executable_path=GeckoDriverManager().install(), proxy=proxy)
+PROXY = "127.0.0.1:9050" # IP:PORT or HOST:PORT
+options.add_argument('--proxy-server=%s' % PROXY)
+
+driver = webdriver.Firefox(options=options, executable_path=GeckoDriverManager().install())
 driver.set_window_size(1080, 1920)
 
 
