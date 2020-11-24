@@ -47,7 +47,7 @@ def get_tor_session():
 #PARSE VALUE FROM VODAFONE
 def getVodafonePrice():
     session = get_tor_session()
-    content = session.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons/3p/fibra-3-gold.json", headers=headers)
+    content = session.get("https://www.vodafone.pt/content/dam/digital-sites/data-binding/jsons-bf/3p/fibra-3-gold-bf-2.json", headers=headers)
     vdf = json.loads(content.content)
     return float(vdf['baseValue'])
 
