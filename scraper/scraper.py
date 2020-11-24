@@ -147,8 +147,8 @@ driver.set_window_size(1080, 1920)
 
 print('Getting NOS screenshot')
 get_screenshot('https://www.nos.pt/particulares/pacotes/todos-os-pacotes/Paginas/pacotes.aspx?source=menupacotes&content=topo', 'screenshots/nos/nos_'+str(timestamp)+'.png')
-print('Getting MEO screenshot')
-get_screenshot('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz', 'screenshots/meo/meo_'+str(timestamp)+'.png')
+#print('Getting MEO screenshot')
+#get_screenshot('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz', 'screenshots/meo/meo_'+str(timestamp)+'.png')
 print('Getting VODAFONE screenshot')
 get_screenshot('https://www.vodafone.pt/pacotes.html#3p', 'screenshots/vodafone/vodafone_'+str(timestamp)+'.png')
 
