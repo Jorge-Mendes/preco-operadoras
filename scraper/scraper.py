@@ -1,5 +1,7 @@
 from dotenv import load_dotenv
 from pathlib import Path
+from minio import Minio
+from minio.error import ResponseError
 import os
 import time
 import pymongo
@@ -13,6 +15,21 @@ import re
 headers = {
     'User-Agent': '"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"'
 }
+
+BASE = 'https://render-tron.appspot.com/screenshot/'
+
+def save_image(client, bucket, file, path):
+    try:
+       client.put_object(bucket, path, file, file_size=len(file))
+    except ResponseError as err:
+       print(err)
+
+def get_screenshot(url, path):
+    session = get_tor_session()
+    response = session.get(BASE + url, stream=True)
+    if response.status_code == 200:
+        save_image(minioClient, MINIO_BUCKET, response.raw.decode_content, path)
+
 
 def get_tor_session():
     session = requests.session()
@@ -62,6 +79,9 @@ MONGO_HOST = os.getenv("MONGO_HOST");
 MONGO_PORT = os.getenv("MONGO_PORT");
 MONGO_DB = os.getenv("MONGO_DB");
 MONGO_COLLECTION = os.getenv("MONGO_COLLECTION");
+MINIO_ACCESS_KEY = os.getenv("MINIO_ACCESS_KEY");
+MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY");
+MINIO_BUCKET = os.getenv("MINIO_BUCKET");
 
 #Initailiaze Database
 myclient = pymongo.MongoClient("mongodb://"+MONGO_HOST+":"+MONGO_PORT+"/")
@@ -69,10 +89,19 @@ mydb = myclient[MONGO_DB]
 mycol = mydb[MONGO_COLLECTION]
 
 
+minioClient = Minio('s3.preco-operadoras.pt',
+                  access_key=MINIO_ACCESS_KEY,
+                  secret_key=MINIO_SECRET_KEY,
+                  secure=True)
+
+
 
 #Get timestamp
 timestamp = int(time.time())*1000
 print(timestamp)
+
+
+get_screenshot('https://www.vodafone.pt/pacotes.html#3p', 'vodafone_'+str(timestamp)+'.png')
 
 
 #Upload VODAFONE price
