@@ -130,15 +130,19 @@ print( "NOS: " + str(nosPrice) )
 
 options = Options()
 options.headless = True
-fp = webdriver.FirefoxProfile()
+#fp = webdriver.FirefoxProfile()
 # Direct = 0, Manual = 1, PAC = 2, AUTODETECT = 4, SYSTEM = 5
-fp.set_preference("network.proxy.type", 1)
-fp.set_preference("network.proxy.socks",'127.0.0.1')
-fp.set_preference("network.proxy.socks_port",int(9050))
-fp.update_preferences()
+#fp.set_preference("network.proxy.type", 1)
+#fp.set_preference("network.proxy.socks",'127.0.0.1')
+#fp.set_preference("network.proxy.socks_port",int(9050))
+#fp.update_preferences()
+proxy_settings = {"network.proxy.type":1,
+    "network.proxy.socks": "127.0.0.1",
+    "network.proxy.socks_port": 9050,
+    "network.proxy.socks_remote_dns": True,
+}
 
-
-driver = webdriver.Firefox(options=options,firefox_profile=fp, executable_path=GeckoDriverManager().install())
+driver = webdriver.Firefox(options=options,proxy=proxy_settings, executable_path=GeckoDriverManager().install())
 driver.set_window_size(1080, 1920)
 
 print('Getting MEO screenshot')
