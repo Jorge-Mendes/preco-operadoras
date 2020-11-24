@@ -29,6 +29,7 @@ def save_image(client, bucket, file, path):
 
 def get_screenshot(url, path):
         driver.get(url)
+        time.sleep(5)
         image = driver.get_screenshot_as_png();
         save_image(minioClient, MINIO_BUCKET, image, path)
 
