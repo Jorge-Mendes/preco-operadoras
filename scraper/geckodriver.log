@@ -296,3 +296,30 @@ Exiting due to channel error.
 Exiting due to channel error.
 Exiting due to channel error.
 Exiting due to channel error.
+1606222793929	geckodriver	INFO	Listening on 127.0.0.1:50069
+1606222793933	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileX2tDHh"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606222796195	Marionette	INFO	Listening on port 39965
+1606222796259	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606222877596	geckodriver	INFO	Listening on 127.0.0.1:33267
+1606222877600	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiled9aecB"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606222879482	Marionette	INFO	Listening on port 43615
+1606222879564	Marionette	WARN	TLS certificate errors will be ignored for this session
+1606222900350	geckodriver	INFO	Listening on 127.0.0.1:44607
+1606222900353	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilep0WqK6"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606222902330	Marionette	INFO	Listening on port 37365
+1606222902390	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=1295543235, line 1: unreachable code after return statement
+JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=1295543235, line 1: unreachable code after return statement
+JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=1295543235, line 1: unreachable code after return statement
+JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=1295543235 line 1 > eval, line 1: unreachable code after return statement
+JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=1295543235 line 1 > eval, line 1: unreachable code after return statement
+1606222916647	Marionette	INFO	Stopped listening on port 37365
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+

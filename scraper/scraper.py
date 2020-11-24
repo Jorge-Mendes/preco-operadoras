@@ -29,7 +29,6 @@ def save_image(client, bucket, file, path):
 
 def get_screenshot(url, path):
         driver.get(url)
-        time.sleep(5)
         image = driver.get_screenshot_as_png();
         save_image(minioClient, MINIO_BUCKET, image, path)
 
@@ -132,6 +131,7 @@ print( "NOS: " + str(nosPrice) )
 options = Options()
 options.headless = True
 driver = webdriver.Firefox(options=options, executable_path=GeckoDriverManager().install())
+driver.implicitly_wait(10);
 driver.set_window_size(1080, 1920)
 
 
