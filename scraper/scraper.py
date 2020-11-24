@@ -134,7 +134,7 @@ driver = webdriver.Firefox(options=options, executable_path=GeckoDriverManager()
 driver.set_window_size(1080, 1920)
 
 
-get_screenshot('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz', 'screenshots/meo/meo_'+str(timestamp)+'.png')
+#get_screenshot('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz', 'screenshots/meo/meo_'+str(timestamp)+'.png')
 get_screenshot('https://www.vodafone.pt/pacotes.html#3p', 'screenshots/vodafone/vodafone_'+str(timestamp)+'.png')
 get_screenshot('https://www.nos.pt/particulares/pacotes/todos-os-pacotes/Paginas/pacotes.aspx?source=menupacotes&content=topo', 'screenshots/nos/nos_'+str(timestamp)+'.png')
 
