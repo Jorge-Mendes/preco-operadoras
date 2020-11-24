@@ -147,7 +147,5 @@ get_screenshot('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz', 'scr
 print('Getting VODAFONE screenshot')
 get_screenshot('https://www.vodafone.pt/pacotes.html', 'screenshots/vodafone/vodafone_'+str(timestamp)+'.png')
 
-time.sleep(30)
-
 driver.close()
 driver.quit()
