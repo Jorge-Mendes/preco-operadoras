@@ -2,6 +2,9 @@ from dotenv import load_dotenv
 from pathlib import Path
 from minio import Minio
 from minio.error import ResponseError
+from selenium import webdriver
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.options import Options
 import os
 import time
 import pymongo
@@ -16,19 +19,19 @@ headers = {
     'User-Agent': '"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"'
 }
 
-BASE = 'https://render-tron.appspot.com/screenshot/'
 
 def save_image(client, bucket, file, path):
     try:
-       client.put_object(bucket, path, file, file_size=len(file))
+        png = io.BytesIO(file)
+        client.put_object(bucket, path, png, len(file),content_type='image/png')
     except ResponseError as err:
        print(err)
 
 def get_screenshot(url, path):
-    session = get_tor_session()
-    response = session.get(BASE + url, stream=True)
-    if response.status_code == 200:
-        save_image(minioClient, MINIO_BUCKET, response.raw.decode_content, path)
+        driver.get(url)
+        image = driver.get_screenshot_as_png();
+        save_image(minioClient, MINIO_BUCKET, image, path)
+
 
 
 def get_tor_session():
@@ -101,8 +104,6 @@ timestamp = int(time.time())*1000
 print(timestamp)
 
 
-get_screenshot('https://www.vodafone.pt/pacotes.html#3p', 'vodafone_'+str(timestamp)+'.png')
-
 
 #Upload VODAFONE price
 vodafonePrice = getVodafonePrice();
@@ -124,3 +125,18 @@ nosPrice = getNosPrice();
 nosRecord = { "operator": 2, "value": nosPrice, "timestamp" : timestamp }
 x = mycol.insert_one(nosRecord)
 print( "NOS: " + str(nosPrice) )
+
+
+
+options = Options()
+options.headless = True
+driver = webdriver.Firefox(options=options, executable_path=GeckoDriverManager().install())
+driver.set_window_size(1024, 768)
+
+
+get_screenshot('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz', '/screenshots/meo/meo_'+str(timestamp)+'.png')
+get_screenshot('https://www.vodafone.pt/pacotes.html#3p', '/screenshots/vodafone/vodafone_'+str(timestamp)+'.png')
+get_screenshot('https://www.nos.pt/particulares/pacotes/todos-os-pacotes/Paginas/pacotes.aspx?source=menupacotes&content=topo', '/screenshots/nos/nos_'+str(timestamp)+'.png')
+
+driver.close()
+driver.quit()
