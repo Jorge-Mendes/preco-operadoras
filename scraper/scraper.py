@@ -130,15 +130,17 @@ print( "NOS: " + str(nosPrice) )
 
 options = Options()
 options.headless = True
-PROXY = "127.0.0.1:9050" # IP:PORT or HOST:PORT
+PROXY = "socks5://127.0.0.1:9050" # IP:PORT or HOST:PORT
 options.add_argument('--proxy-server=%s' % PROXY)
 
 driver = webdriver.Firefox(options=options, executable_path=GeckoDriverManager().install())
 driver.set_window_size(1080, 1920)
 
-
+print('Getting VODAFONE screenshot')
 #get_screenshot('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz', 'screenshots/meo/meo_'+str(timestamp)+'.png')
+print('Getting MEO screenshot')
 get_screenshot('https://www.vodafone.pt/pacotes.html#3p', 'screenshots/vodafone/vodafone_'+str(timestamp)+'.png')
+print('Getting NOS screenshot')
 get_screenshot('https://www.nos.pt/particulares/pacotes/todos-os-pacotes/Paginas/pacotes.aspx?source=menupacotes&content=topo', 'screenshots/nos/nos_'+str(timestamp)+'.png')
 
 driver.close()
