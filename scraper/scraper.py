@@ -128,9 +128,14 @@ print( "NOS: " + str(nosPrice) )
 
 
 
+proxy_address = "127.0.0.1:9050"
+proxy = Proxy({
+    'proxyType': ProxyType.MANUAL,
+    'httpProxy': proxy_address,
+})
 options = Options()
 options.headless = True
-driver = webdriver.Firefox(options=options, executable_path=GeckoDriverManager().install())
+driver = webdriver.Firefox(options=options, executable_path=GeckoDriverManager().install(), proxy=proxy)
 driver.set_window_size(1080, 1920)
 
 
