@@ -5,6 +5,7 @@ from minio.error import ResponseError
 from selenium import webdriver
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.proxy import Proxy, ProxyType
 import os
 import time
 import pymongo

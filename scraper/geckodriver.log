@@ -323,3 +323,13 @@ JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d
 
 ###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
+1606224532384	geckodriver	INFO	Listening on 127.0.0.1:41783
+1606224532388	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileIAASzR"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1606224534366	Marionette	INFO	Listening on port 40281
+1606224534426	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=284888363, line 1: unreachable code after return statement
+JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=284888363, line 1: unreachable code after return statement
+JavaScript warning: https://www.vodafone.pt/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=1&cb=284888363 line 1 > eval, line 1: unreachable code after return statement
+1606224541695	Marionette	INFO	Stopped listening on port 40281
