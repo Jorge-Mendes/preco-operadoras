@@ -137,7 +137,7 @@ driver = webdriver.Firefox(options=options, executable_path=GeckoDriverManager()
 driver.set_window_size(1080, 1920)
 
 print('Getting VODAFONE screenshot')
-#get_screenshot('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz', 'screenshots/meo/meo_'+str(timestamp)+'.png')
+get_screenshot('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz', 'screenshots/meo/meo_'+str(timestamp)+'.png')
 print('Getting MEO screenshot')
 get_screenshot('https://www.vodafone.pt/pacotes.html#3p', 'screenshots/vodafone/vodafone_'+str(timestamp)+'.png')
 print('Getting NOS screenshot')
