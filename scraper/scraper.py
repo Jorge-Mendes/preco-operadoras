@@ -131,7 +131,7 @@ print( "NOS: " + str(nosPrice) )
 options = Options()
 options.headless = True
 driver = webdriver.Firefox(options=options, executable_path=GeckoDriverManager().install())
-driver.implicitly_wait(10);
+driver.implicitly_wait(3);
 driver.set_window_size(1080, 1920)
 
 
