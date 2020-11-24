@@ -29,6 +29,9 @@ def save_image(client, bucket, file, path):
 
 def get_screenshot(url, path):
         driver.get(url)
+        if(url == "https://www.vodafone.pt/pacotes.html"):
+            button = driver.find_element_by_xpath('//*[@id="#3p"]')
+            button.click()
         image = driver.get_screenshot_as_png();
         save_image(minioClient, MINIO_BUCKET, image, path)
 
@@ -150,7 +153,7 @@ get_screenshot('https://www.nos.pt/particulares/pacotes/todos-os-pacotes/Paginas
 print('Getting MEO screenshot')
 get_screenshot('https://www.meo.pt/servicos/casa/fibra/pacotes-tv-net-voz', 'screenshots/meo/meo_'+str(timestamp)+'.png')
 print('Getting VODAFONE screenshot')
-get_screenshot('https://www.vodafone.pt/pacotes.html#3p', 'screenshots/vodafone/vodafone_'+str(timestamp)+'.png')
+get_screenshot('https://www.vodafone.pt/pacotes.html', 'screenshots/vodafone/vodafone_'+str(timestamp)+'.png')
 
 driver.close()
 driver.quit()
