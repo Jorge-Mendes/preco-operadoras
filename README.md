@@ -1,4 +1,4 @@
-![alt text](https://preco-operadoras.pt/images/logo_md.png "Preço Operadoras")
+![Preço Operadoras](https://preco-operadoras.pt/images/logo_md.png)
 
 Monitorização dos preços das operadoras para um pacote básico de de TV+NET+VOZ.
 
